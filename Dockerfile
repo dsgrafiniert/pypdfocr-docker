@@ -1,7 +1,9 @@
 FROM ubuntu:latest
-MAINTAINER Markus Matiaschek <mmatiaschek@ai-ag.de>
+MAINTAINER Dominik Schön <dominik@familie-schoen.com>
 
 ENV T_LANG deu
+
+RUN apt-get clean && apt-get update && apt-get install -y locales
 
 RUN locale-gen en_US.UTF-8  
 ENV LANG en_US.UTF-8  
