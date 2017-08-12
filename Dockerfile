@@ -32,4 +32,6 @@ RUN patch -l /usr/local/lib/python2.7/dist-packages/pypdfocr/pypdfocr_watcher.py
 
 VOLUME /media
 
-ENTRYPOINT ["/usr/local/bin/pypdfocr"]
+COPY config.yaml /media/.
+
+CMD ["/usr/local/bin/pypdfocr -w /media -f -c /media/config.yaml"]
