@@ -31,4 +31,6 @@ VOLUME /media
 
 COPY config.yaml /media/.
 
+RUN find / | grep "pypdfocr"
+
 CMD ["/usr/local/bin/pypdfocr -w /media -f -c /media/config.yaml"]
