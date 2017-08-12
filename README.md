@@ -13,7 +13,7 @@ PyPDFOCR converts a scanned PDF into an OCR'ed PDF using Tesseract-OCR and Ghost
 
 ## Dockerfile
 
-[**Trusted Build**](https://hub.docker.com/r/mmatiaschek/pypdfocr/)
+[**Trusted Build**](https://hub.docker.com/r/dschoen/pypdfocr/)
 
 This Docker image is based on the [official Ubuntu](https://hub.docker.com/_/ubuntu/) base image.
 
@@ -22,49 +22,12 @@ It incorporates a patch for issue [#41](https://github.com/virantha/pypdfocr/iss
 ## How to use this image
 
 ```
-docker run --rm mmatiaschek/pypdfocr [-h] [-d] [-v] [-m] [-l LANG] [--preprocess]
+docker run --rm dschoen/pypdfocr [-h] [-d] [-v] [-m] [-l LANG] [--preprocess]
                 [--skip-preprocess] [-w WATCH_DIR] [-f] [-c CONFIGFILE] [-e]
                 [-n]
                 [pdf_filename]
-```
-
-### Case 1: Single Document
 
 ```
-docker run -v ~/:/media --rm pypdfocr /media/filename.pdf
-```
-
---> reads filename.pdf from your Home directory, filename_ocr.pdf will be generated
-
-
-### Case 2 : Watch folder
-
-```
-docker run -v ~/Documents/Paper:/media --rm mmatiaschek/pypdfocr -w /media -f -c /media/config.yaml
+docker run -v ~/Documents/Paper:/media dschoen/pypdfocr
 ```
 For sample config see [config.yaml](https://github.com/mmatiaschek/pypdfocr-docker/blob/master/config.yaml) or pypdfocr authors repository [here](https://github.com/virantha/pypdfocr/).
- 
-### Help
-
-```
-docker run --rm mmatiaschek/pypdfocr [-h] [-d] [-v] [-m] [-l LANG] [--preprocess]
-                [--skip-preprocess] [-w WATCH_DIR] [-f] [-c CONFIGFILE] [-e]
-                [-n]
-                [pdf_filename]
-```
-
-
-Interactive Shell
-
-```
-docker run --entrypoint=/bin/bash -t -i mmatiaschek/pypdfocr
-```
-
-
-### How i use this image
-
-1. I use Scanner Pro on iOS (scanbot on Android) to scan and upload documents to a WebDAV folder without OCR
-2. The WebDAV folder is hosted on my Synology DiskStation NAS via HTTPS and shared between devices with CloudStation
-3. I run this PyPDFOCR on Docker manually on Mac OS X or hosted on a local server
-
-This way my personal documents don't have to leave my hardware or network aka personal cloud.
